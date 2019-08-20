@@ -3,15 +3,15 @@ import axios from 'axios';
 
 const Login = () => {
 
-    const [ state, setState] = useState({credentials: {
+    const [ state, setState ] = useState({credentials: {
         username: "",
         password: ""
     }})
 
     const handleChange = e => {
-        this.setState({
+        setState({
           credentials: {
-            ...this.state.credentials,
+            ...state.credentials,
             [e.target.name]: e.target.value
           }
         });
@@ -20,11 +20,14 @@ const Login = () => {
     const login = e => {
         e.preventDefault();
         axios
-          .post("http://localhost:5000/api/login", this.state.credentials)
-          .then(res => console.log(res))
+          .post("http://localhost:5000/api/login", state.credentials)
+          .then(res => {
+              console.log(res)
+              localStorage.setItem(res);
+          })
           .catch(err => console.log(err.response));
     };
-    
+
     return (
         <>
             <form onSubmit={login}>
@@ -42,7 +45,6 @@ const Login = () => {
                 />
                 <button>Log in</button>
             </form>
-            <p>Login compo</p>
         </>
     )
 }
