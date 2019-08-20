@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Login = () => {
-
+const Login = props => {
+    console.log(props)
     const [ state, setState ] = useState({credentials: {
         username: "",
         password: ""
@@ -24,6 +24,7 @@ const Login = () => {
           .then(res => {
               console.log('endpoint data: ', res)
               localStorage.setItem('token', res.data.payload);
+              props.history.push('/api/friends')
           })
           .catch(err => console.log(err.response));
     };

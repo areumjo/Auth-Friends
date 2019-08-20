@@ -20,7 +20,7 @@ function App() {
           </div>
         </header>
         <p>Auth-friends</p>
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={ props => <Login {...props} /> } />
         <Route path="/signup" component={SignUp} />
         <PrivateRoute exact path="/protected" component={Protected} />
       </div>
