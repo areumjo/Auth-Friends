@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 import Login from './components/Login';
-import Protected from './components/Protected'
+import Protected from './components/Protected';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
         </header>
         <p>Auth-friends</p>
         <Route path="/login" component={Login} />
-        <Route exact path="/protected" component={Protected} />
+        <PrivateRoute exact path="/protected" component={Protected} />
       </div>
     </Router>
   );
